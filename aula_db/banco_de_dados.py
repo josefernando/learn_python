@@ -2,7 +2,7 @@ import sqlite3
 
 conexao = sqlite3.connect("aula.db")
 
-def criar_tabela():
+def criar_tabela(conexao):
     conexao.execute(
         '''
 create table if not exists aluno (
@@ -15,24 +15,26 @@ idade integer not null
 
     conexao.commit()
 
-def inserir_aluno(nome, idade):
+def inserir_aluno(conexao, nome, idade):
     conexao.execute("insert into aluno (nome, idade) values (?,?);",(nome,idade))
     conexao.commit()
 
-def listar_alunos():
+
+def listar_alunos(conexao):
     alunos = conexao.execute(
         '''
 select * from aluno;
 '''
     )
-    for aluno in alunos:
-        print(aluno)
+    # for aluno in alunos:
+    #     print(aluno)
+    return alunos
 
-def atualizar_aluno(id,nome,idade):
+def atualizar_aluno(conexao, id, nome, idade):
     conexao.execute("update aluno set idade=? where id=?;",(idade,id))
     conexao.commit()
 
-def excluir_aluno(id):
+def excluir_aluno(conexao, id):
     # ERROR: 'parameters are of unsupported type'
     # conexao.execute("delete from aluno where id = ?;",(id))
     #  ao passar apenas um valor inteiro.
@@ -46,11 +48,11 @@ def excluir_aluno(id):
 
     conexao.commit()
 
-# criar_tabela() 
-inserir_aluno("Maria","21")
-print("antes")
-listar_alunos()
-# atualizar_aluno(1,"manuel", 60)
-print("depois")
-excluir_aluno(4)
-listar_alunos()
+# criar_tabela(conexao) 
+# inserir_aluno(conexao,"Maria","21")
+# print("antes")
+# listar_alunos(conexao)
+# # atualizar_aluno(conexao,3,"Maria", 65)
+# print("depois")
+# # # excluir_aluno(4)
+# # listar_alunos(conexao)
