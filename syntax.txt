@@ -1,0 +1,55 @@
+1. print formatado
+====
+   numero = 10
+   print(f"Número {10}")
+====
+2. Gerar números aleatório.
+===
+import random
+#limite superior não é incluído
+x = random.randint(1,50)
+y = random.randrange(1,50,2) [inicial, final, step (ex. de 2 em 2)]
+===
+
+Condicionais
+====
+if() :
+elif() :
+else:
+
+=======
+Loop while
+while ():
+=======
+
+Listas
+ex:
+
+lista_nomes =["José", "Luana"]
+
+lista2 = ["Jose" , 1 , True]
+
+==> adicionar elementos na lista
+ex: 
+lista2 = lista2 + ["Manuel"] (concatenação)
+...
+ou
+lista2 = lista2.append("Manuel")
+
+lista2 = lista2.remove("Manuel")
+
+IMPORTANTE: 
+No caso de elementos duplicados, os primeiros a serem removidos são os de índice menor, ou FIFO
+
+tamanho da lista
+
+lista2...
+len(lista02)
+
+====================
+Tuplas, Dicionários e set
+
+================
+Tuplas -> PARÊNTESES
+ex: 
+dias_da_semana = (segunda, terça, quarta, quinta, sexta, sábado e domingo)
