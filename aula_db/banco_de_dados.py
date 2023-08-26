@@ -30,6 +30,13 @@ select * from aluno;
     #     print(aluno)
     return alunos
 
+def imprimir_alunos(conexao):
+    alunos = listar_alunos(conexao)
+    for aluno in alunos:
+        print(aluno)
+        print(f"Nome:  {aluno[1]}")
+        print(f"Idade:  {aluno[2]}")
+
 def atualizar_aluno(conexao, id, nome, idade):
     conexao.execute("update aluno set idade=? where id=?;",(idade,id))
     conexao.commit()
@@ -49,10 +56,14 @@ def excluir_aluno(conexao, id):
     conexao.commit()
 
 # criar_tabela(conexao) 
-# inserir_aluno(conexao,"Maria","21")
 # print("antes")
-# listar_alunos(conexao)
-# # atualizar_aluno(conexao,3,"Maria", 65)
+# imprimir_alunos(conexao)
+# inserir_aluno(conexao,"Maria","21")
+# inserir_aluno(conexao,"Manuel","50")
+# inserir_aluno(conexao,"Cláudio","35")
 # print("depois")
+# imprimir_alunos(conexao)
+# # atualizar_aluno(conexao,3,"Maria", 65)
+# #print("depois")
 # # # excluir_aluno(4)
 # # listar_alunos(conexao)

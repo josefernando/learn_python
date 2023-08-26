@@ -25,7 +25,7 @@ class TestCrud(unittest.TestCase):
         alunos = self.conexao.execute("SELECT * FROM aluno ORDER BY nome asc").fetchall()
         num_linhas = self.conexao.execute("SELECT count(*)").fetchall()
 
-        print(num_linhas)
+        print(num_linhas[0][0]) # numlinhas[primeira tupla][primeiro campo da tupla]
 
         self.assertEqual(len(alunos),2)
         self.assertEqual(alunos[0][1], "Manuela")
@@ -40,6 +40,25 @@ class TestCrud(unittest.TestCase):
         self.assertEqual(len(alunosx),2)
 
     def test_atualizar_aluno(self):
-        pass
+        inserir_aluno(self.conexao, "Roger", 60)
+        inserir_aluno(self.conexao, "Maria", 40)
+
+        atualizar_aluno(self.conexao, 1 , "Roger", 65)
+
+        aluno = self.conexao.execute("SELECT nome, idade FROM aluno").fetchall()
+        idade00 = aluno[0][1]
+        idade01 = aluno[1][1]
+
+        self.assertEqual(idade00,65)
+        self.assertEqual(idade01,40)
+
     def test_excluir_aluno(self):
-        pass            
+        inserir_aluno(self.conexao, "Roger", 60)
+        inserir_aluno(self.conexao, "Maria", 40)
+
+        excluir_aluno(self.conexao, 2)
+
+        aluno = self.conexao.execute("SELECT nome, idade FROM aluno").fetchall()
+
+        self.assertEqual(len(aluno), 1)
+        self.assertEqual(aluno[0][0], "Roger")
